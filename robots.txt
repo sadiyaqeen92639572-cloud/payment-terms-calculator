@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://net30calculator.com/sitemap.xml

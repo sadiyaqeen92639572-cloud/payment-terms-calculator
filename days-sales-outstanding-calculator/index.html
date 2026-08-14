@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Days Sales Outstanding (DSO) Calculator (2026)</title>
+<meta name="description" content="Free DSO calculator — measure how long it takes your business to collect payment after a sale. Formula: (AR / credit sales) x days.">
+<link rel="canonical" href="https://net30calculator.com/days-sales-outstanding-calculator/">
+<meta property="og:title" content="Days Sales Outstanding (DSO) Calculator (2026)">
+<meta property="og:description" content="Free DSO calculator — measure how long it takes your business to collect payment after a sale. Formula: (AR / credit sales) x days.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://net30calculator.com/days-sales-outstanding-calculator/">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="stylesheet" href="/assets/styles.css">
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebApplication","applicationCategory":"FinanceApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"dateModified":"2026-08-14","author":{"@type":"Organization","name":"Gesmine-Invest Limited","legalName":"Gesmine-Invest Limited","url":"https://net30calculator.com","identifier":{"@type":"PropertyValue","propertyID":"UK Company Number","value":"14120136"},"address":{"@type":"PostalAddress","streetAddress":"Hardy House, 269 Poynders Gardens","addressLocality":"London","postalCode":"SW4 8PQ","addressCountry":"GB"}},"publisher":{"@type":"Organization","name":"Gesmine-Invest Limited","legalName":"Gesmine-Invest Limited","url":"https://net30calculator.com","identifier":{"@type":"PropertyValue","propertyID":"UK Company Number","value":"14120136"},"address":{"@type":"PostalAddress","streetAddress":"Hardy House, 269 Poynders Gardens","addressLocality":"London","postalCode":"SW4 8PQ","addressCountry":"GB"}},"version":"2026-08-v1","name":"Days Sales Outstanding (DSO) Calculator","description":"Free DSO calculator: (accounts receivable / total credit sales) x days in period."},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What is DSO?","acceptedAnswer":{"@type":"Answer","text":"Days Sales Outstanding measures the average number of days it takes a company to collect payment after a sale, calculated as (accounts receivable / total credit sales) × days in period."}},{"@type":"Question","name":"How is DSO calculated?","acceptedAnswer":{"@type":"Answer","text":"DSO = (accounts receivable ÷ total credit sales) × number of days in the period being measured."}}]},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://net30calculator.com/"},{"@type":"ListItem","position":2,"name":"DSO Calculator","item":"https://net30calculator.com/days-sales-outstanding-calculator/"}]}]}</script>
+</head>
+<body>
+<header>
+  <a href="/">Net 30 Calculator</a>
+  <h1>Days Sales Outstanding (DSO) Calculator</h1>
+  <p>Measure your average collection period from accounts receivable and credit sales</p>
+  <p class="reviewed-badge">Last reviewed 2026-08-14</p>
+</header>
+<nav class="crumbs"><a href="/">Home</a> / Days Sales Outstanding (DSO) Calculator</nav>
+<main>
+
+<section>
+  <form onsubmit="event.preventDefault(); calcDSO();">
+    <label>Accounts receivable ($)<input type="number" id="dsoAR" placeholder="e.g. 50000" onchange="calcDSO()"></label>
+    <label>Total credit sales for period ($)<input type="number" id="dsoSales" placeholder="e.g. 600000" onchange="calcDSO()"></label>
+    <label>Period (days)<input type="number" id="dsoPeriod" value="365" onchange="calcDSO()"></label>
+    <button type="submit" class="submit-btn">Calculate DSO</button>
+  </form>
+  <div id="dso-results" style="display:none;margin-top:20px;padding:20px;background:var(--brand-light);border-radius:var(--radius);">
+    <div class="result-amount" id="r-dso"></div>
+    <p class="privacy-note">Days Sales Outstanding — average number of days it takes to collect payment after a sale.</p>
+  </div>
+</section>
+<section class="formula-section">
+  <h2>DSO Formula</h2>
+  <div class="formula-code">DSO = (accounts receivable ÷ total credit sales) × days in period</div>
+  <p class="formula-footnote">A lower DSO means faster collections. Compare your DSO against your own stated payment terms (e.g. Net 30) — a DSO significantly higher than your terms signals collection problems, not just slow-paying customers.</p>
+</section>
+<section>
+  <h2>What Counts as a Good DSO?</h2>
+  <p>There's no universal "good" DSO — it depends on your industry and your own payment terms. As a rule of thumb, a DSO within 10-15 days of your standard term (e.g. 40-45 for Net 30 terms) is typical; a DSO well beyond that suggests either lenient enforcement or real collection issues worth investigating.</p>
+</section>
+<section>
+  <h2>Related Calculators</h2>
+  <ul class="tool-links">
+    <li><a href="/">Net 30 Calculator</a></li>
+    <li><a href="/net-60-calculator/">Net 60 Calculator</a></li>
+    <li><a href="/invoice-due-date-calculator/">Invoice Due Date Calculator</a></li>
+    <li><a href="/net-30-payment-terms-explained/">What is Net 30? (Full Guide)</a></li>
+  </ul>
+</section>
+</main>
+<footer>
+<p>Net30Calculator.com is published by Gesmine-Invest Limited, registered UK company number 14120136, registered office at Hardy House, 269 Poynders Gardens, London, United Kingdom, SW4 8PQ.</p>
+<p><a href="/about/">About</a> · <a href="/privacy/">Privacy</a> · <a href="/changelog/">Changelog</a> · &copy; 2026 Net30Calculator. Estimates only — not legal or financial advice.</p>
+</footer>
+<script src="/assets/calc-engine.js"></script>
+</body>
+</html>

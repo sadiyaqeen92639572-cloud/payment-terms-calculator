@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Net 60 Calculator — Invoice Due Date (2026)</title>
+<meta name="description" content="Free Net 60 due date calculator with a start-date selector (invoice, delivery, or end of month) and business-days option.">
+<link rel="canonical" href="https://net30calculator.com/net-60-calculator/">
+<meta property="og:title" content="Net 60 Calculator — Invoice Due Date (2026)">
+<meta property="og:description" content="Free Net 60 due date calculator with a start-date selector (invoice, delivery, or end of month) and business-days option.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://net30calculator.com/net-60-calculator/">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="stylesheet" href="/assets/styles.css">
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebApplication","applicationCategory":"FinanceApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"dateModified":"2026-08-14","author":{"@type":"Organization","name":"Gesmine-Invest Limited","legalName":"Gesmine-Invest Limited","url":"https://net30calculator.com","identifier":{"@type":"PropertyValue","propertyID":"UK Company Number","value":"14120136"},"address":{"@type":"PostalAddress","streetAddress":"Hardy House, 269 Poynders Gardens","addressLocality":"London","postalCode":"SW4 8PQ","addressCountry":"GB"}},"publisher":{"@type":"Organization","name":"Gesmine-Invest Limited","legalName":"Gesmine-Invest Limited","url":"https://net30calculator.com","identifier":{"@type":"PropertyValue","propertyID":"UK Company Number","value":"14120136"},"address":{"@type":"PostalAddress","streetAddress":"Hardy House, 269 Poynders Gardens","addressLocality":"London","postalCode":"SW4 8PQ","addressCountry":"GB"}},"version":"2026-08-v1","name":"Net 60 Calculator","description":"Free calculator for Net 60 invoice due dates with a start-date basis selector (invoice, delivery, or end of month) and calendar/business-day modes."},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What does Net 60 mean?","acceptedAnswer":{"@type":"Answer","text":"Payment is due 60 days after the start date on the invoice — invoice date, delivery date, or end of month, depending on the agreed terms."}},{"@type":"Question","name":"How is a Net 60 due date calculated?","acceptedAnswer":{"@type":"Answer","text":"Due date = start date + 60 days. Enter your invoice date and start-date basis above for the exact due date."}}]},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://net30calculator.com/"},{"@type":"ListItem","position":2,"name":"Net 60 Calculator","item":"https://net30calculator.com/net-60-calculator/"}]}]}</script>
+</head>
+<body>
+<header>
+  <a href="/">Net 30 Calculator</a>
+  <h1>Net 60 Calculator</h1>
+  <p>Calculate your Net 60 invoice due date — invoice, delivery, or end-of-month basis</p>
+  <p class="reviewed-badge">Last reviewed 2026-08-14</p>
+</header>
+<nav class="crumbs"><a href="/">Home</a> / Net 60 Calculator</nav>
+<main>
+
+<section>
+  <form onsubmit="event.preventDefault(); calcDueDate();">
+    <label>Invoice date<input type="date" id="invoiceDate" onchange="calcDueDate()"></label>
+    <label>Start date basis
+      <select id="basis" onchange="toggleBasisInputs(); calcDueDate();">
+        <option value="invoice">Invoice date</option>
+        <option value="delivery">Delivery date</option>
+        <option value="eom">End of invoice month (EOM)</option>
+      </select>
+    </label>
+    <label id="deliveryRow" style="display:none;">Delivery date<input type="date" id="deliveryDate" onchange="calcDueDate()"></label>
+    <label>Payment term
+      <div class="toggle-group" id="term-toggle">
+        <button type="button" onclick="setTerm(this,15)">Net 15</button>
+        <button type="button" onclick="setTerm(this,30)">Net 30</button>
+        <button type="button" onclick="setTerm(this,45)">Net 45</button>
+        <button type="button" class="active" onclick="setTerm(this,60)">Net 60</button>
+        <button type="button" onclick="setTerm(this,90)">Net 90</button>
+        <button type="button" onclick="setTerm(this,'custom')">Custom</button>
+      </div>
+    </label>
+    <label class="concession-input" style="display:flex;"><span>Custom days</span><input type="number" id="customDays" min="1" value="60" onchange="calcDueDate()"></label>
+    <label>Day count
+      <div class="toggle-group" id="daymode-toggle">
+        <button type="button" class="active" onclick="setDayMode(this,'calendar')">Calendar days</button>
+        <button type="button" onclick="setDayMode(this,'business')">Business days</button>
+      </div>
+    </label>
+    <p class="basis-note">Business days = weekends excluded. Federal holidays are <strong>not</strong> excluded.</p>
+    <button type="submit" class="submit-btn">Calculate Due Date</button>
+  </form>
+  <div id="results" style="display:none;margin-top:20px;padding:20px;background:var(--brand-light);border-radius:var(--radius);">
+    <div class="result-amount" id="r-due"></div>
+    <div class="result-row"><span>Start date used</span><span id="r-start"></span></div>
+    <div class="result-row"><span>Days remaining</span><span id="r-remaining"></span></div>
+    <div id="discount-result-row" style="display:none;"></div>
+  </div>
+</section>
+<section>
+  <h2>What Is Net 60?</h2>
+  <p>Net 60 means payment is due 60 days after the start date on the invoice — the same start-date ambiguity applies as Net 30: invoice date, delivery date, or end of the invoice month (EOM 60) can all be the agreed clock start. Net 60 terms are common for larger B2B contracts and enterprise vendor agreements where the buyer negotiates extended payment windows.</p>
+  <h2>Net 60 vs Net 30</h2>
+  <p>Net 60 gives the buyer twice the payment window of Net 30, which improves the buyer's cash flow at the cost of the seller's. Sellers sometimes offer an early payment discount (e.g. 2/10 Net 60) to encourage faster payment — use the <a href="/">main Net 30 calculator</a> to model discount scenarios.</p>
+</section>
+<section>
+  <h2>Related Calculators</h2>
+  <ul class="tool-links">
+    <li><a href="/">Net 30 Calculator</a></li>
+    <li><a href="/invoice-due-date-calculator/">Invoice Due Date Calculator</a></li>
+    <li><a href="/days-sales-outstanding-calculator/">DSO Calculator</a></li>
+    <li><a href="/net-30-payment-terms-explained/">What is Net 30? (Full Guide)</a></li>
+  </ul>
+</section>
+</main>
+<footer>
+<p>Net30Calculator.com is published by Gesmine-Invest Limited, registered UK company number 14120136, registered office at Hardy House, 269 Poynders Gardens, London, United Kingdom, SW4 8PQ.</p>
+<p><a href="/about/">About</a> · <a href="/privacy/">Privacy</a> · <a href="/changelog/">Changelog</a> · &copy; 2026 Net30Calculator. Estimates only — not legal or financial advice.</p>
+</footer>
+<script src="/assets/calc-engine.js"></script>
+</body>
+</html>

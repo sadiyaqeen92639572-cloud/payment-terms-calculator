@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Net 30 Calculator — Invoice Due Date & Early Payment Discount (2026)</title>
+<meta name="description" content="Free Net 30 due date calculator with a start-date selector (invoice, delivery, or end-of-month) and business-days option. Plus 2/10 Net 30 early payment discount calculator.">
+<link rel="canonical" href="https://net30calculator.com/">
+<meta property="og:title" content="Net 30 Calculator — Invoice Due Date & Early Payment Discount">
+<meta property="og:description" content="Calculate your Net 30 (or Net 15/45/60/90) due date from invoice date, delivery date, or end of month — calendar or business days.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://net30calculator.com/">
+<meta name="twitter:card" content="summary_large_image">
+<!-- TODO: <meta name="google-site-verification" content="[GSC tag once domain purchased + property verified]" /> -->
+<link rel="stylesheet" href="/assets/styles.css">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebApplication",
+      "name": "Net 30 Calculator",
+      "description": "Free calculator for Net 30/15/45/60/90 invoice due dates and 2/10 Net 30 early payment discounts, with a start-date basis selector (invoice date, delivery date, or end of month) and calendar/business-day modes.",
+      "applicationCategory": "FinanceApplication",
+      "operatingSystem": "Any",
+      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+      "dateModified": "2026-08-14",
+      "version": "2026-08-v1",
+      "author": {
+        "@type": "Organization",
+        "name": "Gesmine-Invest Limited",
+        "legalName": "Gesmine-Invest Limited",
+        "url": "https://net30calculator.com",
+        "identifier": { "@type": "PropertyValue", "propertyID": "UK Company Number", "value": "14120136" },
+        "address": { "@type": "PostalAddress", "streetAddress": "Hardy House, 269 Poynders Gardens", "addressLocality": "London", "postalCode": "SW4 8PQ", "addressCountry": "GB" }
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "Gesmine-Invest Limited",
+        "legalName": "Gesmine-Invest Limited",
+        "url": "https://net30calculator.com",
+        "identifier": { "@type": "PropertyValue", "propertyID": "UK Company Number", "value": "14120136" },
+        "address": { "@type": "PostalAddress", "streetAddress": "Hardy House, 269 Poynders Gardens", "addressLocality": "London", "postalCode": "SW4 8PQ", "addressCountry": "GB" }
+      }
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What does Net 30 mean?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Net 30 means payment is due 30 days after the start date on the invoice — but which date counts as day zero varies by business: invoice date, delivery date, or end of the invoice month (EOM 30) are all used in practice. Use the start-date selector above to match your own agreement." }
+        },
+        {
+          "@type": "Question",
+          "name": "Does Net 30 mean calendar days or business days?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Net 30 defaults to calendar days unless the contract specifies business days. This calculator supports both — the business-days mode excludes weekends only; it does not exclude federal holidays, so check your own calendar if the due date falls near one." }
+        },
+        {
+          "@type": "Question",
+          "name": "What is 2/10 Net 30?",
+          "acceptedAnswer": { "@type": "Answer", "text": "2/10 Net 30 means the buyer gets a 2% discount if they pay within 10 days of the start date, with the full amount due within 30 days otherwise. Enable the early payment discount option above to calculate your deadline and savings." }
+        },
+        {
+          "@type": "Question",
+          "name": "How do I calculate a Net 30 due date?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Due date = start date + 30 days. Enter your invoice date, choose your start-date basis (invoice, delivery, or end of month) and day-count mode (calendar or business days), and the calculator returns the exact due date." }
+        },
+        {
+          "@type": "Question",
+          "name": "What is EOM 30 payment terms?",
+          "acceptedAnswer": { "@type": "Answer", "text": "EOM 30 (end of month, 30 days) means the 30-day clock starts from the last day of the invoice month, not the invoice date itself — so an invoice dated any day in August is due 30 days after August 31." }
+        },
+        {
+          "@type": "Question",
+          "name": "Is Net 30 the same for every invoice?",
+          "acceptedAnswer": { "@type": "Answer", "text": "No — Net 30 is a common default but the actual start date (invoice, delivery, or EOM) and day-count method (calendar or business) vary by vendor agreement. Always confirm the specific terms on your contract or purchase order." }
+        }
+      ]
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://net30calculator.com/" }
+      ]
+    }
+  ]
+}
+</script>
+</head>
+<body>
+<header>
+  <a href="/">Net 30 Calculator</a>
+  <h1>Net 30 Calculator</h1>
+  <p>Invoice due date + early payment discount — with a start-date selector most calculators skip</p>
+  <p class="reviewed-badge">Last reviewed 2026-08-14</p>
+</header>
+<nav class="crumbs"><a href="/">Home</a></nav>
+<main>
+
+<section>
+  <form onsubmit="event.preventDefault(); calcDueDate();">
+    <label>Invoice date
+      <input type="date" id="invoiceDate" onchange="calcDueDate()">
+    </label>
+
+    <label>Start date basis
+      <select id="basis" onchange="toggleBasisInputs(); calcDueDate();">
+        <option value="invoice">Invoice date</option>
+        <option value="delivery">Delivery date</option>
+        <option value="eom">End of invoice month (EOM)</option>
+      </select>
+    </label>
+
+    <label id="deliveryRow" style="display:none;">Delivery date
+      <input type="date" id="deliveryDate" onchange="calcDueDate()">
+    </label>
+
+    <label>Payment term
+      <div class="toggle-group" id="term-toggle">
+        <button type="button" onclick="setTerm(this,15)">Net 15</button>
+        <button type="button" class="active" onclick="setTerm(this,30)">Net 30</button>
+        <button type="button" onclick="setTerm(this,45)">Net 45</button>
+        <button type="button" onclick="setTerm(this,60)">Net 60</button>
+        <button type="button" onclick="setTerm(this,90)">Net 90</button>
+        <button type="button" onclick="setTerm(this,'custom')">Custom</button>
+      </div>
+    </label>
+    <label class="concession-input" style="display:flex;">
+      <span>Custom days</span>
+      <input type="number" id="customDays" min="1" value="30" onchange="calcDueDate()">
+    </label>
+
+    <label>Day count
+      <div class="toggle-group" id="daymode-toggle">
+        <button type="button" class="active" onclick="setDayMode(this,'calendar')">Calendar days</button>
+        <button type="button" onclick="setDayMode(this,'business')">Business days</button>
+      </div>
+    </label>
+    <p class="basis-note">Business days = weekends excluded. Federal holidays are <strong>not</strong> excluded — check your specific holiday calendar if a due date falls near one.</p>
+
+    <label style="flex-direction:row;align-items:center;gap:8px;">
+      <input type="checkbox" id="discountEnable" onchange="toggleDiscountSection()" style="width:auto;">
+      <span>Add an early payment discount (e.g. 2/10 Net 30)</span>
+    </label>
+    <div id="discountFields" style="display:none;grid-template-columns:1fr 1fr 1fr;gap:12px;">
+      <label>Discount days<input type="number" id="discountDays" value="10" onchange="calcDueDate()"></label>
+      <label>Discount %<input type="number" id="discountPct" value="2" step="0.1" onchange="calcDueDate()"></label>
+      <label>Invoice amount ($)<input type="number" id="invoiceAmount" value="0" onchange="calcDueDate()"></label>
+    </div>
+
+    <button type="submit" class="submit-btn">Calculate Due Date</button>
+  </form>
+
+  <div id="results" style="display:none;margin-top:20px;padding:20px;background:var(--brand-light);border-radius:var(--radius);">
+    <div class="result-amount" id="r-due"></div>
+    <div class="result-row"><span>Start date used</span><span id="r-start"></span></div>
+    <div class="result-row"><span>Days remaining</span><span id="r-remaining"></span></div>
+    <div id="discount-result-row" style="display:none;margin-top:12px;padding-top:12px;border-top:1px solid rgba(0,0,0,.1);">
+      <div class="result-row"><span>Discount deadline</span><span id="r-discount-deadline"></span></div>
+      <div class="result-row"><span>Savings if paid early</span><span id="r-discount-savings"></span></div>
+      <div class="result-row"><span>Amount due if paid early</span><span id="r-discount-amount-due"></span></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h2>More Net Terms Calculators</h2>
+  <ul class="tool-links">
+    <li><a href="/net-60-calculator/">Net 60 Calculator</a></li>
+    <li><a href="/invoice-due-date-calculator/">Invoice Due Date Calculator</a></li>
+    <li><a href="/days-sales-outstanding-calculator/">DSO Calculator</a></li>
+    <li><a href="/net-30-payment-terms-explained/">What is Net 30? (Full Guide)</a></li>
+  </ul>
+</section>
+
+<section class="formula-section">
+  <h2>How This Calculator Works — Formulas &amp; Method</h2>
+  <p class="source-line">Calculation: deterministic date arithmetic — no AI, no estimation</p>
+  <h3>Start-date basis</h3>
+  <table>
+    <tr><th>Basis</th><th>What it means</th></tr>
+    <tr><td>Invoice date</td><td>Clock starts the day the invoice is issued (most common default)</td></tr>
+    <tr><td>Delivery date</td><td>Clock starts the day goods/services are delivered or completed</td></tr>
+    <tr><td>End of month (EOM)</td><td>Clock starts on the last calendar day of the invoice's month</td></tr>
+  </table>
+  <h3>Formulas</h3>
+  <div class="formula-code">
+    <span style="color:#86efac;">— Due date —</span><br>
+    due_date = start_date + term_days<br>
+    start_date = invoice_date | delivery_date | end_of_month(invoice_date)<br><br>
+    <span style="color:#86efac;">— Business-day mode —</span><br>
+    business_days: weekends skipped, federal holidays NOT skipped<br><br>
+    <span style="color:#86efac;">— Early payment discount (e.g. 2/10 Net 30) —</span><br>
+    discount_deadline = start_date + discount_days<br>
+    savings = invoice_amount × (discount_pct / 100)
+  </div>
+  <p class="formula-footnote">Federal holidays are deliberately excluded from the business-day calculation to avoid relying on a yearly-maintained holiday calendar dataset. Always confirm exact terms against your own contract or purchase order.</p>
+</section>
+
+<section>
+  <h2>Frequently Asked Questions</h2>
+  <div class="faq-item"><h3>What does Net 30 mean?</h3><p>Payment is due 30 days after the start date on the invoice — but which date counts as day zero (invoice, delivery, or end of month) varies by business. Use the start-date selector above to match your own agreement.</p></div>
+  <div class="faq-item"><h3>Does Net 30 mean calendar days or business days?</h3><p>Net 30 defaults to calendar days unless the contract specifies business days. This calculator supports both — business-day mode excludes weekends only, not federal holidays.</p></div>
+  <div class="faq-item"><h3>What is 2/10 Net 30?</h3><p>A 2% discount if paid within 10 days, full amount due within 30 days otherwise. Enable the early payment discount option above.</p></div>
+  <div class="faq-item"><h3>What is EOM 30?</h3><p>End of month, 30 days — the clock starts from the last day of the invoice month rather than the invoice date itself.</p></div>
+</section>
+
+<section class="eeat-title">
+  <h2>About This Calculator</h2>
+  <p>Net30Calculator.com is published by Gesmine-Invest Limited to help freelancers, small businesses, and AP/AR teams calculate exact invoice due dates and early payment discounts without ambiguity about the start date. See our <a href="/about/">About page</a> for full methodology.</p>
+</section>
+
+</main>
+<footer>
+<p>Net30Calculator.com is published by Gesmine-Invest Limited, registered UK company number 14120136, registered office at Hardy House, 269 Poynders Gardens, London, United Kingdom, SW4 8PQ.</p>
+<p><a href="/about/">About</a> · <a href="/privacy/">Privacy</a> · <a href="/changelog/">Changelog</a> · &copy; 2026 Net30Calculator. Estimates only — not legal or financial advice.</p>
+</footer>
+<script src="/assets/calc-engine.js"></script>
+<script>
+document.getElementById('invoiceDate').value = new Date().toISOString().slice(0,10);
+</script>
+</body>
+</html>

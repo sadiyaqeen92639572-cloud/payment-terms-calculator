@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Invoice Due Date Calculator — Any Payment Term (2026)</title>
+<meta name="description" content="Free invoice due date calculator for any payment term (Net 15/30/45/60/90), with invoice/delivery/EOM start-date basis and business-days option.">
+<link rel="canonical" href="https://net30calculator.com/invoice-due-date-calculator/">
+<meta property="og:title" content="Invoice Due Date Calculator — Any Payment Term (2026)">
+<meta property="og:description" content="Free invoice due date calculator for any payment term (Net 15/30/45/60/90), with invoice/delivery/EOM start-date basis and business-days option.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://net30calculator.com/invoice-due-date-calculator/">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="stylesheet" href="/assets/styles.css">
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebApplication","applicationCategory":"FinanceApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"dateModified":"2026-08-14","author":{"@type":"Organization","name":"Gesmine-Invest Limited","legalName":"Gesmine-Invest Limited","url":"https://net30calculator.com","identifier":{"@type":"PropertyValue","propertyID":"UK Company Number","value":"14120136"},"address":{"@type":"PostalAddress","streetAddress":"Hardy House, 269 Poynders Gardens","addressLocality":"London","postalCode":"SW4 8PQ","addressCountry":"GB"}},"publisher":{"@type":"Organization","name":"Gesmine-Invest Limited","legalName":"Gesmine-Invest Limited","url":"https://net30calculator.com","identifier":{"@type":"PropertyValue","propertyID":"UK Company Number","value":"14120136"},"address":{"@type":"PostalAddress","streetAddress":"Hardy House, 269 Poynders Gardens","addressLocality":"London","postalCode":"SW4 8PQ","addressCountry":"GB"}},"version":"2026-08-v1","name":"Invoice Due Date Calculator","description":"Free calculator for invoice due dates from any payment term, with a start-date basis selector (invoice, delivery, or end of month) and calendar/business-day modes."},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"How do I calculate an invoice due date?","acceptedAnswer":{"@type":"Answer","text":"Due date = start date + payment term days. Choose your start-date basis (invoice, delivery, or end of month) and term length above."}},{"@type":"Question","name":"What if my invoice does not state a start-date basis?","acceptedAnswer":{"@type":"Answer","text":"Default to the invoice date unless your contract or PO specifies delivery date or end-of-month terms."}}]},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://net30calculator.com/"},{"@type":"ListItem","position":2,"name":"Invoice Due Date Calculator","item":"https://net30calculator.com/invoice-due-date-calculator/"}]}]}</script>
+</head>
+<body>
+<header>
+  <a href="/">Net 30 Calculator</a>
+  <h1>Invoice Due Date Calculator</h1>
+  <p>Calculate any invoice due date — pick your start-date basis and term</p>
+  <p class="reviewed-badge">Last reviewed 2026-08-14</p>
+</header>
+<nav class="crumbs"><a href="/">Home</a> / Invoice Due Date Calculator</nav>
+<main>
+
+<section>
+  <form onsubmit="event.preventDefault(); calcDueDate();">
+    <label>Invoice date<input type="date" id="invoiceDate" onchange="calcDueDate()"></label>
+    <label>Start date basis
+      <select id="basis" onchange="toggleBasisInputs(); calcDueDate();">
+        <option value="invoice">Invoice date</option>
+        <option value="delivery">Delivery date</option>
+        <option value="eom">End of invoice month (EOM)</option>
+      </select>
+    </label>
+    <label id="deliveryRow" style="display:none;">Delivery date<input type="date" id="deliveryDate" onchange="calcDueDate()"></label>
+    <label>Payment term
+      <div class="toggle-group" id="term-toggle">
+        <button type="button" onclick="setTerm(this,15)">Net 15</button>
+        <button type="button" class="active" onclick="setTerm(this,30)">Net 30</button>
+        <button type="button" onclick="setTerm(this,45)">Net 45</button>
+        <button type="button" onclick="setTerm(this,60)">Net 60</button>
+        <button type="button" onclick="setTerm(this,90)">Net 90</button>
+        <button type="button" onclick="setTerm(this,'custom')">Custom</button>
+      </div>
+    </label>
+    <label class="concession-input" style="display:flex;"><span>Custom days</span><input type="number" id="customDays" min="1" value="30" onchange="calcDueDate()"></label>
+    <label>Day count
+      <div class="toggle-group" id="daymode-toggle">
+        <button type="button" class="active" onclick="setDayMode(this,'calendar')">Calendar days</button>
+        <button type="button" onclick="setDayMode(this,'business')">Business days</button>
+      </div>
+    </label>
+    <p class="basis-note">Business days = weekends excluded. Federal holidays are <strong>not</strong> excluded.</p>
+    <button type="submit" class="submit-btn">Calculate Due Date</button>
+  </form>
+  <div id="results" style="display:none;margin-top:20px;padding:20px;background:var(--brand-light);border-radius:var(--radius);">
+    <div class="result-amount" id="r-due"></div>
+    <div class="result-row"><span>Start date used</span><span id="r-start"></span></div>
+    <div class="result-row"><span>Days remaining</span><span id="r-remaining"></span></div>
+    <div id="discount-result-row" style="display:none;"></div>
+  </div>
+</section>
+<section>
+  <h2>Why the Start Date Matters</h2>
+  <p>The most common source of invoice due-date disputes isn't the term length — it's which date the term counts from. "30 days" from the invoice date, from the delivery/completion date, and from the end of the invoice month (EOM 30) can produce due dates weeks apart for the same invoice. Always confirm the start-date basis in your contract or purchase order before assuming.</p>
+</section>
+<section>
+  <h2>Related Calculators</h2>
+  <ul class="tool-links">
+    <li><a href="/">Net 30 Calculator</a></li>
+    <li><a href="/net-60-calculator/">Net 60 Calculator</a></li>
+    <li><a href="/days-sales-outstanding-calculator/">DSO Calculator</a></li>
+    <li><a href="/net-30-payment-terms-explained/">What is Net 30? (Full Guide)</a></li>
+  </ul>
+</section>
+</main>
+<footer>
+<p>Net30Calculator.com is published by Gesmine-Invest Limited, registered UK company number 14120136, registered office at Hardy House, 269 Poynders Gardens, London, United Kingdom, SW4 8PQ.</p>
+<p><a href="/about/">About</a> · <a href="/privacy/">Privacy</a> · <a href="/changelog/">Changelog</a> · &copy; 2026 Net30Calculator. Estimates only — not legal or financial advice.</p>
+</footer>
+<script src="/assets/calc-engine.js"></script>
+</body>
+</html>
