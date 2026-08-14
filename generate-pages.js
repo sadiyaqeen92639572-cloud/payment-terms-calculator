@@ -64,7 +64,9 @@ function layout({ title, description, canonicalPath, h1, subtitle, jsonLd, bodyH
 <meta property="og:type" content="website">
 <meta property="og:url" content="${DOMAIN}${canonicalPath}">
 <meta name="twitter:card" content="summary_large_image">
-${gscTag}<link rel="stylesheet" href="/assets/styles.css">
+${gscTag}<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon.png" type="image/png">
+<link rel="stylesheet" href="/assets/styles.css">
 <script type="application/ld+json">${JSON.stringify(jsonLd)}</script>
 </head>
 <body>
