@@ -29,6 +29,10 @@ node generate-sitemap.js   # regenerates sitemap.xml
 npx wrangler pages deploy . --project-name paymenttermscalculator --commit-dirty=true
 ```
 
+## Free Companion Tools
+
+[Net 30 Due Date Checker](https://sadiyaqeen92639572-cloud.github.io/net-30-due-date-checker/) — a quick single-purpose version of this calculator (invoice date + term → due date), hosted separately. Good for a fast one-off check; the full [PaymentTermsCalculator.com](https://paymenttermscalculator.com/) adds the start-date basis selector, business-day mode, early-payment discount math, and the DSO calculator.
+
 ## Monetization
 
 Day-1: plain outbound links to FreshBooks/Melio/Bill.com (no tracking). Apply to
