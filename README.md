@@ -1,11 +1,11 @@
-# Net 30 Calculator
+# PaymentTermsCalculator.com
 
 Free invoice due-date and early-payment-discount calculator with a start-date basis
 selector (invoice date / delivery date / end-of-month) and calendar-vs-business-days
 toggle — the ambiguity ("30 days from what?") that thin competitor calculators don't
 address.
 
-**Domain (provisional, not yet purchased/verified):** net30calculator.com
+**Domain:** paymenttermscalculator.com (registered on Cloudflare)
 
 ## Pages
 
@@ -23,10 +23,10 @@ node generate-pages.js     # regenerates all inner pages (not index.html — han
 node generate-sitemap.js   # regenerates sitemap.xml
 ```
 
-## Deploy (once domain purchased)
+## Deploy
 
 ```
-npx wrangler pages deploy . --project-name net30-calculator --commit-dirty=true
+npx wrangler pages deploy . --project-name paymenttermscalculator --commit-dirty=true
 ```
 
 ## Monetization
@@ -38,8 +38,6 @@ any page carrying a tracked link once approved — see `/about/`.
 
 ## Still open
 
-- Domain purchase (candidates: net30calculator.com, paymenttermscalculator.com,
-  invoicetermscalculator.com, duedatecalc.com) — needs explicit confirmation before buying.
-- GSC tag — add once domain verified (`GSC_TAG` const in `generate-pages.js`, plus
+- GSC tag — add once GSC property verified (`GSC_TAG` const in `generate-pages.js`, plus
   `index.html`'s commented-out meta tag).
 - Affiliate applications (FreshBooks first, Bill.com/Melio after traffic).

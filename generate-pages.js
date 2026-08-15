@@ -1,10 +1,10 @@
 const fs = require('fs');
 const path = require('path');
 
-const DOMAIN = 'https://net30calculator.com';
+const DOMAIN = 'https://paymenttermscalculator.com';
 const LAST_REVIEWED = '2026-08-14';
 // TODO: fill in once domain purchased + GSC property verified
-const GSC_TAG = '';
+const GSC_TAG = 'yZ4W-J5cxLhgf62e8ZMlWVyIHTKuGg93hFYg3uhtFoU';
 
 const ORG = {
   '@type': 'Organization',
@@ -71,7 +71,7 @@ ${gscTag}<link rel="icon" href="/favicon.svg" type="image/svg+xml">
 </head>
 <body>
 <header>
-  <a href="/">Net 30 Calculator</a>
+  <a href="/">PaymentTermsCalculator</a>
   <h1>${h1}</h1>
   <p>${subtitle}</p>
   <p class="reviewed-badge">Last reviewed ${LAST_REVIEWED}</p>
@@ -81,8 +81,8 @@ ${gscTag}<link rel="icon" href="/favicon.svg" type="image/svg+xml">
 ${bodyHtml}
 </main>
 <footer>
-<p>Net30Calculator.com is published by Gesmine-Invest Limited, registered UK company number 14120136, registered office at Hardy House, 269 Poynders Gardens, London, United Kingdom, SW4 8PQ.</p>
-<p><a href="/about/">About</a> · <a href="/privacy/">Privacy</a> · <a href="/changelog/">Changelog</a> · &copy; 2026 Net30Calculator. Estimates only — not legal or financial advice.</p>
+<p>PaymentTermsCalculator.com is published by Gesmine-Invest Limited, registered UK company number 14120136, registered office at Hardy House, 269 Poynders Gardens, London, United Kingdom, SW4 8PQ.</p>
+<p><a href="/about/">About</a> · <a href="/privacy/">Privacy</a> · <a href="/changelog/">Changelog</a> · &copy; 2026 PaymentTermsCalculator. Estimates only — not legal or financial advice.</p>
 </footer>
 <script src="/assets/calc-engine.js"></script>
 </body>
@@ -377,8 +377,8 @@ function write(dir, html) {
 {
   const body = `
 <section>
-  <h2>About Net30Calculator.com</h2>
-  <p>Net30Calculator.com is a free tool for calculating invoice due dates and early payment discounts under Net 30 and related payment terms (Net 15/45/60/90). It's published by Gesmine-Invest Limited, a UK-registered company (company number 14120136, registered office Hardy House, 269 Poynders Gardens, London, SW4 8PQ).</p>
+  <h2>About PaymentTermsCalculator.com</h2>
+  <p>PaymentTermsCalculator.com is a free tool for calculating invoice due dates and early payment discounts under Net 30 and related payment terms (Net 15/45/60/90). It's published by Gesmine-Invest Limited, a UK-registered company (company number 14120136, registered office Hardy House, 269 Poynders Gardens, London, SW4 8PQ).</p>
 </section>
 <section>
   <h2>Sourcing Methodology</h2>
@@ -391,8 +391,8 @@ function write(dir, html) {
 </section>`;
   const jsonLd = { '@context': 'https://schema.org', '@graph': [ORG] };
   write('about', layout({
-    title: 'About — Net30Calculator.com',
-    description: 'About Net30Calculator.com — publisher info, calculation methodology, and monetization disclosure.',
+    title: 'About — PaymentTermsCalculator.com',
+    description: 'About PaymentTermsCalculator.com — publisher info, calculation methodology, and monetization disclosure.',
     canonicalPath: '/about/',
     h1: 'About',
     subtitle: '',
@@ -405,13 +405,13 @@ function write(dir, html) {
   const body = `
 <section>
   <h2>Privacy Policy</h2>
-  <p>Net30Calculator.com does not require account creation and does not store the invoice dates, amounts, or figures you enter into the calculators — all calculations run entirely in your browser (client-side JavaScript) and are never transmitted to our servers.</p>
+  <p>PaymentTermsCalculator.com does not require account creation and does not store the invoice dates, amounts, or figures you enter into the calculators — all calculations run entirely in your browser (client-side JavaScript) and are never transmitted to our servers.</p>
   <p>We may use standard, privacy-respecting analytics to understand aggregate site traffic. We do not sell personal data. Outbound links to third-party invoicing software providers are subject to those providers' own privacy policies.</p>
 </section>`;
   const jsonLd = { '@context': 'https://schema.org', '@graph': [ORG] };
   write('privacy', layout({
-    title: 'Privacy Policy — Net30Calculator.com',
-    description: 'Privacy policy for Net30Calculator.com.',
+    title: 'Privacy Policy — PaymentTermsCalculator.com',
+    description: 'Privacy policy for PaymentTermsCalculator.com.',
     canonicalPath: '/privacy/',
     h1: 'Privacy Policy',
     subtitle: '',
@@ -430,8 +430,8 @@ function write(dir, html) {
 </section>`;
   const jsonLd = { '@context': 'https://schema.org', '@graph': [ORG] };
   write('changelog', layout({
-    title: 'Changelog — Net30Calculator.com',
-    description: 'What changed on Net30Calculator.com and when.',
+    title: 'Changelog — PaymentTermsCalculator.com',
+    description: 'What changed on PaymentTermsCalculator.com and when.',
     canonicalPath: '/changelog/',
     h1: 'Changelog',
     subtitle: '',

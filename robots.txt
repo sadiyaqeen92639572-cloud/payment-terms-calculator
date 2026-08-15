@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://net30calculator.com/sitemap.xml
+Sitemap: https://paymenttermscalculator.com/sitemap.xml

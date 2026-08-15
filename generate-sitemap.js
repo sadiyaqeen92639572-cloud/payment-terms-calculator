@@ -1,5 +1,5 @@
 const fs = require('fs');
-const DOMAIN = 'https://net30calculator.com';
+const DOMAIN = 'https://paymenttermscalculator.com';
 
 const paths = [
   '/', '/net-60-calculator/', '/invoice-due-date-calculator/',
