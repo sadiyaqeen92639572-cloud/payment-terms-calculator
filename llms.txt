@@ -4,13 +4,13 @@
 
 ## What the site is
 
-A small static site: one main due-date + discount calculator on the homepage, plus focused landing pages (Net 60, generic invoice due date, DSO) and two explainer articles. Publisher: Gesmine-Invest Limited (UK company 14120136).
+A small static site: one main due-date + discount calculator on the homepage, plus focused landing pages (Net 60, generic invoice due date, DSO) and one explainer article. Publisher: Gesmine-Invest Limited (UK company 14120136).
 
 ## The calculators
 
 ### Due date (homepage + /net-60-calculator/ + /invoice-due-date-calculator/)
 
-Inputs: invoice date; start-date **basis** (`invoice` | `delivery` | `eom`); term in days (preset toggle 15/30/45/60/90 or custom); **day mode** (`calendar` | `business`). Landing pages call the same engine with a preset term (net-60-calculator = 60); homepage exposes the full toggle group.
+Inputs: invoice date; start-date **basis** (`invoice` | `delivery` | `eom`); term in days (preset toggle 15/30/45/60/90 or custom); **day mode** (`calendar` | `business`). All three pages expose the same toggle group and the same `calc-engine.js`; the landing pages only differ by which preset button is active by default (net-60-calculator → Net 60, invoice-due-date-calculator → Net 30, same as the homepage).
 
 ```
 start_date =
