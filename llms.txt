@@ -1,0 +1,68 @@
+# Payment Terms Calculator (paymenttermscalculator.com)
+
+> Free Net 30 / Net 15 / 45 / 60 / 90 invoice due-date calculator with a start-date basis selector (invoice date, delivery date, or end of month) and a calendar-vs-business-days mode most other calculators skip. Also does 2/10 Net 30 early-payment-discount deadlines and savings, and a Days Sales Outstanding (DSO) calculator. All math runs client-side in the browser — no login, no data sent anywhere. Educational, not accounting or legal advice.
+
+## What the site is
+
+A small static site: one main due-date + discount calculator on the homepage, plus focused landing pages (Net 60, generic invoice due date, DSO) and two explainer articles. Publisher: Gesmine-Invest Limited (UK company 14120136).
+
+## The calculators
+
+### Due date (homepage + /net-60-calculator/ + /invoice-due-date-calculator/)
+
+Inputs: invoice date; start-date **basis** (`invoice` | `delivery` | `eom`); term in days (preset toggle 15/30/45/60/90 or custom); **day mode** (`calendar` | `business`). Landing pages call the same engine with a preset term (net-60-calculator = 60); homepage exposes the full toggle group.
+
+```
+start_date =
+    basis == 'delivery' -> delivery_date (falls back to invoice_date if blank)
+    basis == 'eom'      -> last calendar day of the invoice month
+    else                -> invoice_date
+
+due_date =
+    day_mode == 'calendar' -> start_date + term_days calendar days
+    day_mode == 'business'  -> advance term_days, skipping Saturdays and Sundays
+
+days_remaining = round((due_date - today) / 1 day)   # negative => overdue
+```
+
+- Business mode excludes **weekends only** — federal/public holidays are deliberately NOT excluded (avoids maintaining a yearly holiday dataset; noted on /net-30-payment-terms-explained/).
+- All date math is UTC-based to avoid timezone drift.
+- EOM 30 example: an invoice dated any day in August is due 30 days after August 31.
+
+### Early payment discount (2/10 Net 30)
+
+Optional section on the homepage. Inputs: discount days (default 10), discount % (default 2), invoice amount.
+
+```
+discount_deadline = start_date + discount_days calendar days   # always calendar, even in business mode
+savings           = invoice_amount * (discount_pct / 100)
+amount_due        = invoice_amount - savings
+```
+
+### Days Sales Outstanding — /days-sales-outstanding-calculator/
+
+```
+DSO = (accounts_receivable / total_credit_sales) * days_in_period   # period default 365
+```
+
+## Pages
+
+- [Home — Net 30 Calculator](https://paymenttermscalculator.com/) — full due-date + 2/10 Net 30 discount calculator, start-date basis selector, calendar/business days, FAQ
+- [/net-60-calculator/](https://paymenttermscalculator.com/net-60-calculator/) — same engine preset to 60 days; Net 60 vs Net 30
+- [/invoice-due-date-calculator/](https://paymenttermscalculator.com/invoice-due-date-calculator/) — generic any-term due date; why the start date matters
+- [/days-sales-outstanding-calculator/](https://paymenttermscalculator.com/days-sales-outstanding-calculator/) — DSO formula + what counts as a good DSO
+- [/net-30-payment-terms-explained/](https://paymenttermscalculator.com/net-30-payment-terms-explained/) — what Net 30 means, "30 days from what?", seller/buyer notes, FAQ
+- [/about/](https://paymenttermscalculator.com/about/) · [/privacy/](https://paymenttermscalculator.com/privacy/) · [/changelog/](https://paymenttermscalculator.com/changelog/)
+- [robots.txt](https://paymenttermscalculator.com/robots.txt) · [sitemap.xml](https://paymenttermscalculator.com/sitemap.xml)
+
+## FAQ covered
+
+What Net 30 means; calendar days vs business days; what 2/10 Net 30 is; how to calculate a Net 30 due date; what EOM 30 payment terms are; whether Net 30 is the same for every invoice (no — start date and day-count vary by agreement).
+
+## Notes for LLMs
+
+- The site's distinguishing feature is the **start-date basis selector** — "Net 30" is ambiguous about day zero (invoice date, delivery date, or end of month), and the result changes accordingly.
+- Business-days mode is weekends-only; it does not skip public holidays. Tell users to check a holiday calendar if a due date lands near one.
+- The 2/10-style discount deadline is always counted in **calendar** days regardless of the due-date day mode.
+- Static site on Cloudflare Pages; `pages_build_output_dir = "."`; unknown routes fall back to the homepage HTML.
+- Educational tool, not accounting, tax, or legal advice; confirm actual terms on the contract or purchase order.
